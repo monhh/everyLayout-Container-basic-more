@@ -1,0 +1,118 @@
+@font-face {
+    font-family: Barlow Condensed;
+    src: url(fonts/barlowcondensed-bold.woff2) format("woff2"), url(fonts/barlowcondensed-bold.woff) format("woff");
+    font-weight: 700;
+    font-style: normal
+}
+
+
+:root {
+    --font-plain: Helvetica Neue, Helvetica, Arial, sans-serif;
+    --font-serif: Georgia, serif;
+    --font-special: Barlow Condensed, Helvetica, sans-serif;
+    --font-mono: Menlo, Courier, Courier New, Andale Mono, monospace;
+
+    box-sizing: border-box;
+
+    --color-dark: #050505;
+    --color-darkish: #404040;
+    --color-lightish: #e6e6e6;
+    --color-light: #fafafa;
+    --color-mid: grey;
+    
+    --ratio: 1.4;
+    
+    --s-5: clamp(0.33rem,0.39rem + -0.29vw,0.18rem);
+    --s-4: clamp(0.41rem,0.47rem + -0.31vw,0.25rem);
+    --s-3: clamp(0.51rem,0.57rem + -0.31vw,0.35rem);
+    --s-2: clamp(0.64rem,0.69rem + -0.27vw,0.5rem);
+    --s-1: clamp(0.8rem,0.84rem + -0.18vw,0.71rem);
+    /* define a range; minimum, scaling factor (+vw(1vw=1%))for dynamic adjustment, maximum */
+    --s0: clamp(1rem,1rem + 0vw,1rem);
+    --s1: clamp(1.25rem,1.19rem + 0.32vw,1.41rem);
+    --s2: clamp(1.56rem,1.39rem + 0.85vw,2rem);
+    --s3: clamp(1.95rem,1.61rem + 1.7vw,2.83rem);
+    --s4: clamp(2.44rem,1.83rem + 3.04vw,4rem);
+    --s5: clamp(3.05rem,2.04rem + 5.07vw,5.65rem);
+
+    --measure: 65ch;
+
+    --line-height: var(--ratio);
+    --line-height-small: calc(0.8*var(--ratio));
+
+    --border-thin: var(--s-5);
+    --border-thick: var(--s-2);
+    
+    line-height: var(--ratio);
+    font-size: calc(.333vw + 1em);
+    font-family: var(--font-plain);
+    background-color: var(--color-dark);
+    color: var(--color-darkish)
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+    background-color: inherit;
+    font-family: inherit;
+    color: inherit;
+    overflow-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+
+    /* debug */
+    outline: 2px solid lime;
+    /* background: hsl(0 100% 50% / .1); */
+}
+
+/* everyLayout-Container-basic 
+===================================== */
+
+.container-org {
+    /* ↓ Your name for the container */
+    container-name: myContainer;
+    /* ↓ The type of containment context */
+    container-type: inline-size;
+}
+
+/* Kevin Powell https://www.youtube.com/watch?v=ZSaAHb5dRwQ
+ ========================================================== */
+.super-simple-example {
+    padding-block: var(--s1);
+    display: grid;
+    gap: var(--s3);
+}
+
+.super-simple-example > .container {
+    container-type: inline-size;
+
+    margin-inline: auto;
+    width: 100%;
+    /* padding: var(--s-2); */
+    border: var(--border-thin) solid var(--color-light);
+}
+
+.container[data-type="narrow"] {
+    /* max-width: var(--s3); */
+    max-width: 40ch;
+}
+.container[data-type="medium"] {
+    /* max-width: var(--s4); */
+    max-width: 60ch;
+}
+.container[data-type="wide"] {
+   /*  max-width: var(--s5); */
+    max-width: 80ch;
+}
+
+.super-simple-example p {
+    padding: var(--s-5);
+    background: orange;
+
+    /* container query units */
+    /* font-size: 5cqw; */
+    font-size: 5cqi;
+}
+
